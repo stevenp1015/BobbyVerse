@@ -1,16 +1,14 @@
 const request = require('supertest');
-const pool = require('../../../database');
+const pool = require('../../database');
 const { connectTestDatabase, runMigrations, cleanDatabase, disconnectTestDatabase } = require('../utils/testDatabase');
-
 let app; // Will be assigned the Express app instance
 
 describe('Client Integration Tests', () => {
   beforeAll(async () => {
     await connectTestDatabase();
     await runMigrations();
-
     // Assuming server.js exports the Express app instance as `app`
-    app = require('../../../server').app;
+    app = require('../../server').app;
   });
 
   beforeEach(async () => {

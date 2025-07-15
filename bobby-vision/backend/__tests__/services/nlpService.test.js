@@ -1,4 +1,4 @@
-const { extractJobDetails } = require('../../../services/nlpService');
+const { extractJobDetails } = require('../../services/nlpService');
 
 // Mock the @google/genai library or the relevant parts
 jest.mock('@google/genai');
@@ -18,14 +18,16 @@ describe('NLP Service Unit Tests', () => {
     // Mock a successful Gemini response (adjust structure based on actual Gemini output format you expect/design)
     const mockGeminiResponse = {
       // Simulate Gemini response structure - this depends on the prompt and model output
-      text: () => '{
+    text: () => `{
   "client_name": "Jane",
-  "address": "789 Oak Ave",
-  "services_requested": ["install new fence"],
-  "materials_mentioned": [],
-  "quantities_dimensions": "",
-  "contextual_notes": ""
-}'
+    "address": "789 Oak Ave",
+    "services_requested": ["install new fence"],
+    "materials_mentioned": [],
+    "quantities_dimensions": "",
+    "contextual_notes": ""
+    }`
+
+      
     };
 
     // Mock the Gemini API call to return the mock response

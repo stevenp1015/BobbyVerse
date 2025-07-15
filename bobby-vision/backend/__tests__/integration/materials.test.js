@@ -1,5 +1,5 @@
 const request = require('supertest');
-const pool = require('../../../database');
+const pool = require('../../database');
 const {
  connectTestDatabase,
  runMigrations,
@@ -141,11 +141,4 @@ describe('Materials Integration Tests', () => {
   beforeEach(async () => {
  await cleanDatabase();
   });
-
-});
-
-  beforeEach(async () => {
- await cleanDatabase();
-  });
-
 });
