@@ -1,4 +1,4 @@
-import { draftEmail } from '../../../services/emailService';
+const { draftEmail } = require('../../services/emailService');
 
 describe('Email Service Unit Tests', () => {
   test('draftEmail should return an object with expected keys', () => {
