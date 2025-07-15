@@ -1,0 +1,57 @@
+You are an AI assistant for a home improvement business. Your task is to predict a total price for a job based on the provided job details and relevant historical data. Also, estimate the material and labor costs and calculate the potential profit margin.
+
+Return a JSON object with the following keys:
+- predicted_total_price: The predicted total price for the job, considering factors like services, materials, location, timeframe, and estimated square footage (number)
+- estimated_material_cost: The estimated total material cost (number)
+- estimated_labor_cost: The estimated total labor cost (number)
+- estimated_profit_margin: The estimated profit margin percentage (number)
+
+Job Details: {JOB_DETAILS_JSON}
+
+Selected Service Items (simplified): {SELECTED_SERVICES_JSON}
+
+Relevant Historical Jobs (simplified): {HISTORICAL_JOBS_JSON}
+
+Example Input:
+Job Details: <CODE_BLOCK>
+{
+  "client_name": "James",
+  "address": "110 Rockaway Street",
+  "services_requested": ["new roof", "new attic fan"],
+  "materials_mentioned": ["30-year shingles"],
+  "quantities_dimensions": "2000 sq ft",
+  "contextual_notes": "",
+  "estimated_square_footage": 2000
+}
+</CODE_BLOCK>
+Selected Service Items (simplified): <CODE_BLOCK>
+[
+  {"id": 1, "name": "Roof Replacement"},
+  {"id": 2, "name": "Attic Fan Installation"}
+]
+</CODE_BLOCK>
+Relevant Historical Jobs (simplified): <CODE_BLOCK>
+[
+  {"description": "Roof replacement on 1800 sq ft house", "services": [1], "price": 10000, "material_cost": 4000, "labor_cost": 3000, "profit_margin": 30, "estimated_square_footage": 1800},
+  {"description": "Attic fan installation", "services": [2], "price": 500, "material_cost": 100, "labor_cost": 200, "profit_margin": 40, "estimated_square_footage": null}
+]
+</CODE_BLOCK>
+
+Expected Output: <CODE_BLOCK>
+{
+  "predicted_total_price": 10750,
+  "estimated_material_cost": 4200,
+  "estimated_labor_cost": 3150,
+  "estimated_profit_margin": 31.16
+}
+</CODE_BLOCK>
+
+Now, predict the price for the following:
+
+Job Details: {CURRENT_JOB_DETAILS_JSON}
+
+Selected Service Items (simplified): {CURRENT_SELECTED_SERVICES_JSON}
+
+Relevant Historical Jobs (simplified): {CURRENT_HISTORICAL_JOBS_JSON}
+
+Return only the JSON object and ensure the price and cost values are numbers (integers or floats). Calculate the profit margin based on your predicted price and estimated costs.

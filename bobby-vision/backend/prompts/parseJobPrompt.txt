@@ -1,0 +1,8 @@
+{
+  "client_name": "Sherry",
+  "address": "123 Fake Street",
+  "services_requested": ["new roof"],
+  "materials_mentioned": [],
+  "quantities_dimensions": "",
+  "contextual_notes": ""
+}
