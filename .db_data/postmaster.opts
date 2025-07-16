@@ -1,0 +1,1 @@
+/Applications/Postgres.app/Contents/Versions/17/bin/postgres "-D" "/Users/ttig/projects/BobbyVerse/.db_data"
