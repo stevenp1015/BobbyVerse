@@ -44,3 +44,12 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+**/node_modules/
+.npm
+.pnp
+.pnp.js
+
+# Explicit paths for all found node_modules
+bobby-vision/backend/node_modules/
+bobby-vision/frontend/node_modules/

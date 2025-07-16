@@ -1,0 +1,43 @@
+# Node.js
+# Top-level and nested node_modules
+**/node_modules/
+.npm
+.pnp
+.pnp.js
+
+# Explicit paths for all found node_modules
+bobby-vision/backend/node_modules/
+bobby-vision/frontend/node_modules/
+
+# Build directories
+/dist
+/build
+/coverage
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
