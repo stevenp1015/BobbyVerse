@@ -27,7 +27,7 @@ describe('Materials Integration Tests', () => {
     };
 
     // Assuming app is exported from server.js
-    app = require('../../../server');
+    app = require('../../server');
 
     const response = await request(app)
       .post('/api/materials')
@@ -48,7 +48,7 @@ describe('Materials Integration Tests', () => {
     await pool.query('INSERT INTO materials (name, unit_cost) VALUES ($1, $2)', ['Material 1', 5.00]);
  await pool.query('INSERT INTO materials (name, unit_cost) VALUES ($1, $2)', ['Material 2', 15.00]);
 
-    app = require('../../../server');
+    app = require('../../server');
     const response = await request(app).get('/api/materials');
 
  expect(response.statusCode).toBe(200);
@@ -60,7 +60,7 @@ describe('Materials Integration Tests', () => {
     const result = await pool.query('INSERT INTO materials (name, unit_cost) VALUES ($1, $2) RETURNING material_id', ['Specific Material', 25.00]);
  const materialId = result.rows[0].material_id;
 
-    app = require('../../../server');
+    app = require('../../server');
     const response = await request(app).get(`/api/materials/${materialId}`);
 
  expect(response.statusCode).toBe(200);
@@ -77,7 +77,7 @@ describe('Materials Integration Tests', () => {
  unit_cost: 35.50,
     };
 
-    app = require('../../../server');
+    app = require('../../server');
     const response = await request(app)
  .put(`/api/materials/${materialId}`)
  .send(updatedMaterialData);
@@ -92,7 +92,7 @@ describe('Materials Integration Tests', () => {
     const result = await pool.query('INSERT INTO materials (name, unit_cost) VALUES ($1, $2) RETURNING material_id', ['Material to Delete', 40.00]);
  const materialId = result.rows[0].material_id;
 
-    app = require('../../../server');
+    app = require('../../server');
     const response = await request(app).delete(`/api/materials/${materialId}`);
 
  expect(response.statusCode).toBe(204); // No Content
@@ -102,7 +102,7 @@ describe('Materials Integration Tests', () => {
   });
 
   test('POST /api/materials should return 400 for missing required fields', async () => {
-    app = require('../../../server');
+    app = require('../../server');
     const response = await request(app).post('/api/materials').send({}); // Missing name, unit_cost
  expect(response.statusCode).toBe(400);
  expect(response.body).toHaveProperty('error'); // Assuming the error handler formats this way
@@ -110,7 +110,7 @@ describe('Materials Integration Tests', () => {
 
   test('GET /api/materials/:id should return 404 and error for non-existent material', async () => {
     const nonExistentMaterialId = 9999; // Assuming this ID does not exist
-    app = require('../../../server');
+    app = require('../../server');
     const response = await request(app).get(`/api/materials/${nonExistentMaterialId}`);
  expect(response.statusCode).toBe(404);
  expect(response.body).toHaveProperty('error'); // Assuming the error handler formats this way
@@ -122,7 +122,7 @@ describe('Materials Integration Tests', () => {
  name: 'Attempted Update',
  unit_cost: 50.00,
     };
-    app = require('../../../server');
+    app = require('../../server');
     const response = await request(app)
  .put(`/api/materials/${nonExistentMaterialId}`)
  .send(updatedMaterialData);
@@ -132,7 +132,7 @@ describe('Materials Integration Tests', () => {
 
   test('DELETE /api/materials/:id should return 404 and error for non-existent material', async () => {
     const nonExistentMaterialId = 9999; // Assuming this ID does not exist
-    app = require('../../../server');
+    app = require('../../server');
     const response = await request(app).delete(`/api/materials/${nonExistentMaterialId}`);
  expect(response.statusCode).toBe(404);
  expect(response.body).toHaveProperty('error'); // Assuming the error handler formats this way

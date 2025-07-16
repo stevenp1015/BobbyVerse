@@ -1,8 +1,8 @@
-const pool = require('../../../database');
+const pool = require('../../database');
 const fs = require('fs').promises;
 const path = require('path');
 
-const migrationsDir = path.join(__dirname, '../../../database/migrations');
+const migrationsDir = path.join(__dirname, '../../database/migrations');
 
 const connectTestDatabase = async () => {
   // Ensure test environment variables are loaded before this is called

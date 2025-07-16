@@ -1,5 +1,5 @@
 const request = require('supertest');
-const pool = require('../../../database');
+const pool = require('../../database');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt'); // Import bcrypt for password hashing in test setup
 
@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt'); // Import bcrypt for password hashing in test 
 const { connectTestDatabase, runMigrations, cleanDatabase, disconnectTestDatabase } = require('../utils/testDatabase');
 
 // Assuming you export your Express app from server.js
-const app = require('../../../server');
+const app = require('../../server');
 
 describe('Authentication Integration Tests', () => {
   let testUser;

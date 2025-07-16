@@ -1,15 +1,15 @@
 const request = require('supertest');
 
 // Mock the service modules
-jest.mock('../../../services/nlpService');
-jest.mock('../../../services/itemizationService');
-jest.mock('../../../services/pricingService');
-jest.mock('../../../services/analysisService');
+jest.mock('../../services/nlpService');
+jest.mock('../../services/itemizationService');
+jest.mock('../../services/pricingService');
+jest.mock('../../services/analysisService');
 
-const nlpService = require('../../../services/nlpService');
-const itemizationService = require('../../../services/itemizationService');
-const pricingService = require('../../../services/pricingService');
-const analysisService = require('../../../services/analysisService');
+const nlpService = require('../../services/nlpService');
+const itemizationService = require('../../services/itemizationService');
+const pricingService = require('../../services/pricingService');
+const analysisService = require('../../services/analysisService');
 
 // Assuming you export your Express app from server.js
 const app = require('../../../server');

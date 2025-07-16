@@ -1,8 +1,8 @@
-const { suggestServiceItems } = require('../../../services/itemizationService');
+const { suggestServiceItems } = require('../../services/itemizationService');
 
 // Mock the database connection pool
-jest.mock('../../../database');
-const pool = require('../../../database');
+jest.mock('../../database');
+const pool = require('../../database');
 
 // Mock the @google/genai library or the relevant parts
 jest.mock('@google/genai');

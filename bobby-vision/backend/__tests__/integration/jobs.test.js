@@ -1,5 +1,5 @@
 const request = require('supertest');
-const pool = require('../../../database');
+const pool = require('../../database');
 const { connectTestDatabase, runMigrations, cleanDatabase, disconnectTestDatabase } = require('../utils/testDatabase');
 
 const app = require('../../server');

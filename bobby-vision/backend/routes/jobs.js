@@ -53,7 +53,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT update a job
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req, res, next) => {
   const { id } = req.params;
   const { client_id, title, description, status, total_amount } = req.body;
   try {
@@ -73,6 +73,7 @@ router.put('/:id', async (req, res) => {
     const result = await pool.query(
       'UPDATE jobs SET client_id = $1, title = $2, description = $3, status = $4, total_amount = $5 WHERE job_id = $6 RETURNING *',
       [client_id, title, description, status, total_amount, id]
+    );
     if (result.rows.length === 0) {
       return res.status(404).json({ msg: 'Job not found' });
     }
@@ -81,6 +82,7 @@ router.put('/:id', async (req, res) => {
     next(err);
   }
 });
+
 
 // DELETE a job
 router.delete('/:id', async (req, res) => {

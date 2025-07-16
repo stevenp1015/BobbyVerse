@@ -1,15 +1,15 @@
 const request = require('supertest');
 
 // Mock the propertyService module
-jest.mock('../../../services/propertyService');
+jest.mock('../../services/propertyService');
 // Mock the supplierService module
-jest.mock('../../../services/supplierService');
+jest.mock('../../services/supplierService');
 
 
-const propertyService = require('../../../services/propertyService');
-const supplierService = require('../../../services/supplierService');
+const propertyService = require('../../services/propertyService');
+const supplierService = require('../../services/supplierService');
 // Assuming you export your Express app from server.js
-const app = require('../../../server');
+const app = require('../../server');
 
 describe('External API Integration Tests', () => {
 

@@ -1,4 +1,4 @@
-const { NotFoundError, ValidationError } = require('../../../utils/errors');
+const { NotFoundError, ValidationError } = require('../../utils/errors');
 
 describe('Error Utility Functions', () => {
   test('NotFoundError should have correct properties', () => {

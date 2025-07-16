@@ -20,7 +20,7 @@ router.get('/services/:id', async (req, res) => {
     res.json(result.rows[0]);  }
  catch (err) { next(err); }
   }
-});
+);
 
 // POST create a new service
 router.post('/services', async (req, res) => {
@@ -33,7 +33,7 @@ router.post('/services', async (req, res) => {
     res.status(201).json(result.rows[0]);  }
  catch (err) { next(err); }
   }
-});
+);
 
 // PUT update a service by id
 router.put('/services/:id', async (req, res) => {
@@ -50,7 +50,7 @@ router.put('/services/:id', async (req, res) => {
     res.json(result.rows[0]);  }
  catch (err) { next(err); }
   }
-});
+);
 
 // DELETE delete a service by id
 router.delete('/services/:id', async (req, res) => {
@@ -63,6 +63,6 @@ router.delete('/services/:id', async (req, res) => {
     res.json({ message: 'Service deleted successfully' });  }
  catch (err) { next(err); }
   }
-});
+);
 
 module.exports = router;

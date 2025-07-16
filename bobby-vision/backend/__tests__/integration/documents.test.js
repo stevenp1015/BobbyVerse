@@ -1,10 +1,10 @@
 const request = require('supertest');
-const pool = require('../../../database');
+const pool = require('../../database');
 const { connectTestDatabase, runMigrations, cleanDatabase, disconnectTestDatabase } = require('../utils/testDatabase');
 
 let app;
 // Assuming your server.js exports the app instance:
-app = require('../../../server');
+app = require('../../server');
 
 describe('Document Integration Tests', () => {
   beforeAll(async () => {

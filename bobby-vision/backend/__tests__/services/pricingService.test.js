@@ -1,18 +1,18 @@
-const { predictPrice } = require('../../../services/pricingService');
+const { predictPrice } = require('../../services/pricingService');
 
 // Mock the database connection pool
-jest.mock('../../../database');
-const pool = require('../../../database');
+jest.mock('../../database');
+const pool = require('../../database');
 
 // Mock the service that interacts with Gemini, as unit tests should isolate the function
-jest.mock('../../../services/nlpService');
-jest.mock('../../../services/itemizationService');
-jest.mock('../../../services/analysisService');
+jest.mock('../../services/nlpService');
+jest.mock('../../services/itemizationService');
+jest.mock('../../services/analysisService');
 // Mock the email service as it's not relevant to pricing logic
-jest.mock('../../../services/emailService');
+jest.mock('../../services/emailService');
 // Mock the external API services
-jest.mock('../../../services/propertyService');
-jest.mock('../../../services/supplierService');
+jest.mock('../../services/propertyService');
+jest.mock('../../services/supplierService');
 // Mock the document generation service
 // Mock the genai library directly if needed for more granular mocking within pricingService
 jest.mock('@google/genai');

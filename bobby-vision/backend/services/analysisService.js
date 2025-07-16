@@ -9,7 +9,7 @@ if (!API_KEY) {
   // In a real application, you'd handle this more robustly (e.g., throw an error)
 }
 
-const genAI = new GoogleGenerativeAI(API_KEY || "YOUR_MOCK_API_KEY"); // Use mock key if env var not set
+const genAI = new GoogleGenerativeAI(API_KEY || "AIzaSyDh0lHcnS2fVsSB7qNvquIC-SSTZMIpsaQ"); // Use mock key if env var not set
 const visionModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash-latest" }); // Specify the vision model - using latest as recommended
 
 // --- Helper function to craft photo analysis prompt ---
