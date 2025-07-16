@@ -18,14 +18,22 @@ describe('Authentication Integration Tests', () => {
     await connectTestDatabase();
     await runMigrations();
     // Create a test user directly in the database
-    const hashedPassword = await bcrypt.hash(testPassword, 10); // Hash the password
-    const result = await pool.query(
+    const bobbyPassword = await bcrypt.hash(testPassword, 10); // Hash the password
+    const bobbyResult = await pool.query(
       'INSERT INTO users(username, password, role) VALUES($1, $2, $3) RETURNING user_id, username, role',
-      ['testuser', hashedPassword, 'bobby']
+      ['testbobby', bobbyPassword, 'bobby']
     );
-    testUser = result.rows[0];
+    testUser = bobbyResult.rows[0];
     // Generate a valid token for the test user
     testUserToken = jwt.sign({ userId: testUser.user_id, role: testUser.role }, process.env.JWT_SECRET || 'testsecret', { expiresIn: '1h' }); // Use a fallback secret for testing
+
+    const clientPassword = await bcrypt.hash(testPassword, 10);
+    const clientResult = await pool.query(
+      'INSERT INTO users(username, password, role) VALUES($1, $2, $3) RETURNING user_id, username, role',
+      ['testclient', clientPassword, 'client']
+    );
+    const testClient = clientResult.rows[0];
+    const testClientToken = jwt.sign({ userId: testClient.user_id, role: testClient.role }, process.env.JWT_SECRET || 'testsecret', { expiresIn: '1h' });
   });
 
   afterAll(async () => {
@@ -149,4 +157,13 @@ describe('Authentication Integration Tests', () => {
     // Add assertions to check the structure or content of the successful response if needed
   });
 
+  test('Accessing bobby-only route with client token should return 403', async () => {
+    const response = await request(app)
+      .get('/api/clients')
+      .set('Authorization', `Bearer ${testClientToken}`);
+
+    expect(response.statusCode).toBe(403);
+    expect(response.body).toHaveProperty('error');
+    expect(response.body.error).toBe('Forbidden');
+  });
 });

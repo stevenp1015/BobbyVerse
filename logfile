@@ -20,3 +20,7 @@
 	ADD COLUMN estimated_square_footage INTEGER NULL;
 2025-07-15 22:33:22.260 EDT [20136] LOG:  checkpoint starting: time
 2025-07-15 22:35:01.708 EDT [20136] LOG:  checkpoint complete: wrote 985 buffers (6.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=99.435 s, sync=0.012 s, total=99.449 s; sync files=317, longest=0.001 s, average=0.001 s; distance=4581 kB, estimate=4581 kB; lsn=0/19814B0, redo lsn=0/1981420
+2025-07-16 12:31:42.829 EDT [35989] FATAL:  role "bobby_user" does not exist
+2025-07-16 12:31:42.949 EDT [35990] FATAL:  role "bobby_user" does not exist
+2025-07-16 12:35:50.586 EDT [36693] FATAL:  role "bobby_user" does not exist
+2025-07-16 12:35:50.874 EDT [36694] FATAL:  role "bobby_user" does not exist

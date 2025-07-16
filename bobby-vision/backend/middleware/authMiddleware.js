@@ -1,25 +1,33 @@
 const jwt = require('jsonwebtoken');
 const { ApiError } = require('../utils/errors');
 
-const authenticate = (req, res, next) => {
-  try {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
-    if (token == null) {
-      throw new ApiError('Authentication token required', 401);
-    }
-
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) {
-        throw new ApiError('Invalid or expired token', 403);
-      }
-      req.user = user;
-      next();
-    });
-  } catch (err) {
-    next(err);
+  if (token == null) {
+    return next(new ApiError('Unauthorized', 401));
   }
+
+  jwt.verify(token, process.env.JWT_SECRET || 'testsecret', (err, user) => {
+    if (err) {
+      return next(new ApiError('Forbidden', 403));
+    }
+    req.user = user;
+    next();
+  });
 };
 
-module.exports = authenticate;
+const authorize = (roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(new ApiError('Forbidden', 403));
+    }
+    next();
+  };
+};
+
+module.exports = {
+  authenticateToken,
+  authorize,
+};

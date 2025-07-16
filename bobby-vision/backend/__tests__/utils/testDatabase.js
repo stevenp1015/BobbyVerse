@@ -14,6 +14,23 @@ const connectTestDatabase = async () => {
 const runMigrations = async () => {
   console.log('Running migrations...');
   try {
+    const schemasDir = path.join(__dirname, '../../database/schemas');
+    const schemaFiles = [
+      'users.sql',
+      'clients.sql',
+      'jobs.sql',
+      'documents.sql',
+      'materials.sql',
+      'service_library.sql'
+    ];
+
+    for (const file of schemaFiles) {
+      const filePath = path.join(schemasDir, file);
+      const sql = await fs.readFile(filePath, 'utf-8');
+      await pool.query(sql);
+      console.log(`Applied schema: ${file}`);
+    }
+
     const files = await fs.readdir(migrationsDir);
     const migrationFiles = files.filter(file => file.endsWith('.sql')).sort();
 
